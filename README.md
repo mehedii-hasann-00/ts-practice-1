@@ -13,7 +13,6 @@
       - **Interface**: আপনি **interface** কে একাধিক বার ডিফাইন করতে পারেন এবং তা একত্রিত হয়ে যাবে। অর্থাৎ, একই নামের interface যদি আবার ডিফাইন করা হয়, তবে তার প্রপার্টি যোগ হয়ে যাবে。
 
         উদাহরণ:
-        \`\`\`ts
         interface Person {
           name: string;
         }
@@ -26,14 +25,12 @@
           name: 'Alice',
           age: 30,
         };
-        \`\`\`
 
         এখানে, \`Person\` interface দুটি আলাদা ভাবে ডিফাইন করা হলেও এগুলি একত্রিত হয়ে একটি পূর্ণ \`Person\` interface তৈরি করেছে।
 
       - **Type**: **type** শুধুমাত্র একবার ডিফাইন করা যায়। তবে, **intersection types** ব্যবহার করে আপনি একই ধরনের কিছু ধরনের একত্রিত করতে পারেন।
 
         উদাহরণ:
-        \`\`\`ts
         type Person = {
           name: string;
         };
@@ -48,7 +45,7 @@
           name: 'Alice',
           age: 30,
         };
-        \`\`\`
+       
 
       ### 1.2 **Object Shape (অবজেক্টের আকার):**
       - **Interface** সাধারণত অবজেক্টের শেপ (structure) ডিফাইন করার জন্য ব্যবহৃত হয়।
@@ -65,7 +62,7 @@
       TypeScript-এ **\`keyof\`** কীওয়ার্ড একটি শক্তিশালী টুল যা একটি অবজেক্টের সব কীগুলোর union টাইপ তৈরি করতে ব্যবহৃত হয়। এটি সাধারণত তখন ব্যবহার করা হয় যখন আপনি একটি অবজেক্টের কীগুলির মধ্যে কোন একটি কীগুলোর সাথে কাজ করতে চান।
 
       ### উদাহরণ:
-      \`\`\`ts
+     ts
       interface Person {
         name: string;
         age: number;
@@ -83,7 +80,7 @@
 
       console.log(getPersonDetail(person, 'name')); // John
       console.log(getPersonDetail(person, 'age'));  // 30
-      \`\`\`
+     
 
       এখানে, \`keyof Person\` টাইপ তৈরি করছে \`'name' | 'age' | 'city'\`, অর্থাৎ \`Person\` অবজেক্টের যেকোনো কীগুলির union টাইপ তৈরি হচ্ছে। ফাংশন \`getPersonDetail\` একটি \`key\` নেয়, যা \`Person\` এর কীগুলির মধ্যে একটি হতে হবে এবং তারপর সেই কীগুলোর মান ফেরত দেয়।
 
@@ -97,36 +94,36 @@
       - **\`any\`** টাইপ ব্যবহার করলে আপনি যেকোনো ধরনের ডাটা অ্যাসাইন করতে পারেন। এটি টাইপ চেকিং বypass করে এবং TypeScript একে সব ধরনের টাইপ হিসেবে দেখে।
 
         উদাহরণ:
-        \`\`\`ts
+       ts
         let value: any = 10;
         value = 'Hello';  // Valid
         value = true;     // Valid
-        \`\`\`
+       
 
       ### 3.2 **unknown**
       - **\`unknown\`** টাইপটি **\`any\`** এর মতো দেখতে হলেও এর মধ্যে পার্থক্য হল, আপনি **\`unknown\`** টাইপের মান নিয়ে কাজ করতে আগে টাইপ চেকিং করতে হবে। এটা বেশি সেফ ও টাইপ সিস্টেমের সাথে কমপ্লায়েন্ট।
 
         উদাহরণ:
-        \`\`\`ts
+       ts
         let value: unknown = 10;
         // value.toUpperCase();  // Error: Object is of type 'unknown'.
 
         if (typeof value === 'string') {
           value.toUpperCase();  // Valid
         }
-        \`\`\`
+       
 
       ### 3.3 **never**
       - **\`never\`** টাইপ ব্যবহার করা হয় এমন কোন ফাংশনের জন্য যা কখনোই রিটার্ন করে না। যেমন একটি ফাংশন যা ইনফিনিট লুপে চলে বা এক্সেপশন থ্রো করে।
 
         উদাহরণ:
-        \`\`\`ts
+       ts
         function throwError(message: string): never {
           throw new Error(message);
         }
 
         // This function will never return a value.
-        \`\`\`
+       
 
       ---
 
@@ -135,7 +132,7 @@
       TypeScript-এ **\`enum\`** একটি বিশেষ টাইপ যা কিছু কনস্ট্যান্ট মানের সেট প্রতিনিধিত্ব করে। এটির মাধ্যমে কোডের readability এবং maintainability বেড়ে যায়।
 
       ### 4.1 **Numeric Enum**
-      \`\`\`ts
+     ts
       enum Direction {
         Up = 1,
         Down,
@@ -145,10 +142,10 @@
 
       console.log(Direction.Up);    // 1
       console.log(Direction.Right); // 4
-      \`\`\`
+     
 
       ### 4.2 **String Enum**
-      \`\`\`ts
+     ts
       enum Status {
         Active = 'ACTIVE',
         Inactive = 'INACTIVE',
@@ -157,7 +154,7 @@
 
       console.log(Status.Active);   // 'ACTIVE'
       console.log(Status.Pending);  // 'PENDING'
-      \`\`\`
+     
 
       ---
 
@@ -166,18 +163,18 @@
       ### 5.1 **Union Types**
       Union টাইপ ব্যবহার করা হয় একাধিক টাইপের মধ্যে একটি নির্বাচনের জন্য। এটি **\`|\`** চিহ্ন ব্যবহার করে।
 
-      \`\`\`ts
+     ts
       type StringOrNumber = string | number;
 
       let value: StringOrNumber;
       value = 10;     // Valid
       value = 'Hello'; // Valid
-      \`\`\`
+     
 
       ### 5.2 **Intersection Types**
       Intersection টাইপ দুটি বা তার বেশি টাইপ একত্রিত করতে ব্যবহার করা হয়। এটি **\`&\`** চিহ্ন ব্যবহার করে।
 
-      \`\`\`ts
+     ts
       type Person = {
         name: string;
         age: number;
@@ -196,13 +193,13 @@
         id: 1,
         position: 'Developer'
       };
-      \`\`\`
+     
 
       ---
 
       ## Copyable Code
 
-      \`\`\`html
+     html
       <button onclick="copyCode()">Copy Code</button>
 
       <script>
@@ -231,7 +228,7 @@
             alert("Failed to copy code!");
           });
         }
-      \`\`\`
+     
 
       ### Steps:
       1. Simply **copy the entire code** above.
